@@ -22,7 +22,7 @@ npm install -g hardcider
 ### Example
 
 ```shell
-$ hardcider book --mla https://en.wikipedia.org/wiki/John_Coltrane
+$ hardcider website --mla https://en.wikipedia.org/wiki/John_Coltrane
 
 Fetching MLA citation...
 
