@@ -16,6 +16,14 @@ Use the `hardcider website` command to create a citation. Example:
 ```bash
 hardcider website --ieee https://www.merriam-webster.com/dictionary/cat
 ```
+**Example Output**
+```shell
+$ hardcider website --mla https://en.wikipedia.org/wiki/John_Coltrane
+
+Fetching MLA citation...
+
+“John Coltrane.” Wikipedia, Wikimedia Foundation, 24 Oct. 2018, en.wikipedia.org/wiki/John_Coltrane.
+```
 
 **Flags**
 
