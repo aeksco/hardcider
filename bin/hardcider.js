@@ -4,11 +4,42 @@ const semver = require('semver')
 const minimist = require('minimist')
 const program = require('commander')
 
-// Search Constants
-const CITATION_URL_APA = 'http://www.citationmachine.net/apa/cite-a-website'
-const CITATION_URL_MLA = 'http://www.citationmachine.net/mla/cite-a-website'
-const CITATION_URL_CHICAGO = 'http://www.citationmachine.net/chicago/cite-a-website'
-const CITATION_URL_IEEE = 'http://www.citationmachine.net/ieee/cite-a-website'
+// // // //
+
+// Citation URL components
+const CITATION_URL_ROOT = 'http://www.citationmachine.net/'
+const CITATION_URL_SUFFIX_WEBSITE = '/cite-a-website'
+const CITATION_URL_SUFFIX_BOOK = '/cite-a-book'
+
+// Citation Types
+const CITATION_TYPE_WEBSITE = 'WEBSITE'
+const CITATION_TYPE_BOOK = 'BOOK'
+
+// Citation Formats
+const FORMAT_APA = 'APA'
+const FORMAT_MLA = 'MLA'
+const FORMAT_CHICAGO = 'Chicago'
+const FORMAT_IEEE = 'IEEE'
+
+// buildUrl
+// Builds a URL from which the citation is fetched
+function buildUrl({ type, format }) {
+  switch (type) {
+    case CITATION_TYPE_WEBSITE:
+      return [CITATION_URL_ROOT, format.toLowerCase(), CITATION_URL_SUFFIX_WEBSITE].join('')
+    case CITATION_TYPE_BOOK:
+      return [CITATION_URL_ROOT, format.toLowerCase(), CITATION_URL_SUFFIX_BOOK].join('')
+  }
+}
+
+// getFormat
+// Pulls the correct format from CLI options
+function getFormat(options) {
+  if (options.mla) { return FORMAT_MLA }
+  if (options.chicago) { return FORMAT_CHICAGO }
+  if (options.ieee) { return FORMAT_IEEE }
+  return FORMAT_APA
+}
 
 // // // //
 
@@ -24,34 +55,45 @@ program
   .option('--chicago', 'Chicao Formatted citation')
   .option('--ieee', 'IEEE Format citation')
   .action((websiteUrl, cmd) => {
-
-    // Pulls options from command
-    let fetchUrl = ''
-    const options = cleanArgs(cmd)
-
-    if (options.mla) {
-      fetchUrl = CITATION_URL_MLA
-      console.log(`\n${chalk.blue(`Fetching MLA citation...`)}`)
-    } else if (options.chicago) {
-      fetchUrl = CITATION_URL_CHICAGO
-      console.log(`\n${chalk.blue(`Fetching Chicago citation...`)}`)
-    } else if (options.ieee) {
-      fetchUrl = CITATION_URL_IEEE
-      console.log(`\n${chalk.blue(`Fetching IEEE citation...`)}`)
-    } else {
-      fetchUrl = CITATION_URL_APA
-      console.log(`\n${chalk.blue(`Fetching APA citation...`)}`)
-    }
+    const format = getFormat(cleanArgs(cmd))
+    const fetchUrl = buildUrl({ type: CITATION_TYPE_WEBSITE, format: 'mla' })
 
     // Logs start prompt
+    console.log(`\n${chalk.blue(`Fetching ${format} website citation...`)}`)
+
+    // Fetch citation
     require('../lib/fetch')(fetchUrl, websiteUrl)
     .then((resp) => {
 
       // Logs citations
       console.log(`\n${chalk.yellow(resp)}\n`)
 
-      // Roll credits
-      // console.log(`\n${chalk.blue(`Built by @aeksco - Powered by citationmachine.com`)}\n`)
+      // Exit the CLI
+      process.exit()
+    })
+
+  })
+
+program
+  .command('book <isbn>')
+  .description('fetch a basic citation for the a book\'s ISBN')
+  .option('--apa', 'APA Formatted citation (default)')
+  .option('--mla', 'MLA Formatted citation')
+  .option('--chicago', 'Chicao Formatted citation')
+  .option('--ieee', 'IEEE Format citation')
+  .action((isbn, cmd) => {
+    const format = getFormat(cleanArgs(cmd))
+    const fetchUrl = buildUrl({ type: CITATION_TYPE_BOOK, format: 'mla' })
+
+    // Logs start prompt
+    console.log(`\n${chalk.blue(`Fetching ${format} book citation...`)}`)
+
+    // Fetch citation
+    require('../lib/fetch')(fetchUrl, isbn)
+    .then((resp) => {
+
+      // Logs citations
+      console.log(`\n${chalk.yellow(resp)}\n`)
 
       // Exit the CLI
       process.exit()
