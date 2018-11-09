@@ -13,9 +13,14 @@
   "bugs": {
     "url": "https://github.com/aeksco/hardcider/issues"
   },
-  "author": "Alexander Schwartzberg",
-  "keywords": ["Citation", "CLI", "MLA", "IEEE", "Bibliography"],
   "author": "",
+  "keywords": [
+    "Citation",
+    "CLI",
+    "MLA",
+    "IEEE",
+    "Bibliography"
+  ],
   "license": "MIT",
   "dependencies": {
     "puppeteer": "^1.7.0",

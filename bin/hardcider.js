@@ -39,7 +39,6 @@ program
 
       // Logs citations
       console.log(chalk.yellow(resp))
-      console.log(`\n`)
 
       // Roll credits
       // console.log(`\n${chalk.blue(`Built by @aeksco - Powered by citationmachine.com`)}\n`)
