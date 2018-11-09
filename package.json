@@ -1,7 +1,7 @@
 {
   "name": "hardcider",
-  "version": "0.2.1",
-  "description": "CLI for quickly generating citations for websites.",
+  "version": "0.2.2",
+  "description": "CLI for quickly generating citations for websites and books",
   "bin": {
     "hardcider": "bin/hardcider.js"
   },
