@@ -1,6 +1,8 @@
 # hardcider
 :beer: Create citations for websites quickly from the command line
 
+<img src="https://raw.githubusercontent.com/aeksco/hardcider/master/demo.gif" width="100%"/>
+
 ### Installation
 Run the following command to install `refa` - requires Node.js 8.x and higher
 
