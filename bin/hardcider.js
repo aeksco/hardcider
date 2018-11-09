@@ -27,10 +27,10 @@ program
 
     if (options.mla) {
       fetchUrl = CITATION_URL_MLA
-      console.log(`\n${chalk.blue(`Fetching MLA citation...`)}\n`)
+      console.log(`\n${chalk.blue(`Fetching MLA citation...`)}`)
     } else {
       fetchUrl = CITATION_URL_IEEE
-      console.log(`\n${chalk.blue(`Fetching IEEE citation...`)}\n`)
+      console.log(`\n${chalk.blue(`Fetching IEEE citation...`)}`)
     }
 
     // Logs start prompt
@@ -38,7 +38,7 @@ program
     .then((resp) => {
 
       // Logs citations
-      console.log(chalk.yellow(resp))
+      console.log(`\n${chalk.yellow(resp)}\n`)
 
       // Roll credits
       // console.log(`\n${chalk.blue(`Built by @aeksco - Powered by citationmachine.com`)}\n`)
