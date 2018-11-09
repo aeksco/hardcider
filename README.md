@@ -6,15 +6,19 @@
 ### Installation
 Run the following command to install `refa` - requires Node.js 8.x and higher
 
-```bash
+```shell
 npm install -g hardcider
 ```
 
 ### Usage
 Use the `hardcider website` command to create a citation. Example:
 
-```bash
-hardcider website --ieee https://www.merriam-webster.com/dictionary/cat
+```shell
+$ hardcider website --mla https://en.wikipedia.org/wiki/John_Coltrane
+
+Fetching MLA citation...
+
+“John Coltrane.” Wikipedia, Wikimedia Foundation, 24 Oct. 2018, en.wikipedia.org/wiki/John_Coltrane.
 ```
 
 **Flags**
