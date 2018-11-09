@@ -19,8 +19,10 @@ hardcider website --ieee https://www.merriam-webster.com/dictionary/cat
 
 **Flags**
 
-- `--ieee` - returns an IEEE Formatted Citation
+- `--ieee` - returns an IEEE Formatted Citation (default)
+- `--apa` - returns an APA Formatted Citation
 - `--mla` - returns an MLA Formatted Citation
+- `--chicago` - returns a Chicago Formatted Citation
 
 ### Thanks
 

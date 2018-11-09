@@ -5,8 +5,10 @@ const minimist = require('minimist')
 const program = require('commander')
 
 // Search Constants
-const CITATION_URL_IEEE ='http://www.citationmachine.net/ieee/cite-a-website'
-const CITATION_URL_MLA ='http://www.citationmachine.net/mla/cite-a-website'
+const CITATION_URL_APA = 'http://www.citationmachine.net/apa/cite-a-website'
+const CITATION_URL_MLA = 'http://www.citationmachine.net/mla/cite-a-website'
+const CITATION_URL_CHICAGO = 'http://www.citationmachine.net/chicago/cite-a-website'
+const CITATION_URL_IEEE = 'http://www.citationmachine.net/ieee/cite-a-website'
 
 // // // //
 
@@ -17,8 +19,10 @@ program
 program
   .command('website <website-url>')
   .description('fetch a basic citation for the website-url argument')
-  .option('--ieee', 'IEEE Format citation')
+  .option('--apa', 'APA Formatted citation (default)')
   .option('--mla', 'MLA Formatted citation')
+  .option('--chicago', 'Chicao Formatted citation')
+  .option('--ieee', 'IEEE Format citation')
   .action((websiteUrl, cmd) => {
 
     // Pulls options from command
@@ -28,9 +32,15 @@ program
     if (options.mla) {
       fetchUrl = CITATION_URL_MLA
       console.log(`\n${chalk.blue(`Fetching MLA citation...`)}`)
-    } else {
+    } else if (options.chicago) {
+      fetchUrl = CITATION_URL_CHICAGO
+      console.log(`\n${chalk.blue(`Fetching Chicago citation...`)}`)
+    } else if (options.ieee) {
       fetchUrl = CITATION_URL_IEEE
       console.log(`\n${chalk.blue(`Fetching IEEE citation...`)}`)
+    } else {
+      fetchUrl = CITATION_URL_APA
+      console.log(`\n${chalk.blue(`Fetching APA citation...`)}`)
     }
 
     // Logs start prompt
