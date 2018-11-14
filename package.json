@@ -1,6 +1,6 @@
 {
   "name": "hardcider",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "CLI for quickly generating citations for websites and books",
   "bin": {
     "hardcider": "bin/hardcider.js"
@@ -19,6 +19,7 @@
     "CLI",
     "MLA",
     "IEEE",
+    "BibTeX",
     "Bibliography"
   ],
   "license": "MIT",

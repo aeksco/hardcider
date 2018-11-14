@@ -20,6 +20,7 @@ const FORMAT_APA = 'APA'
 const FORMAT_MLA = 'MLA'
 const FORMAT_CHICAGO = 'Chicago'
 const FORMAT_IEEE = 'IEEE'
+const FORMAT_BIBTEX = 'bibtex'
 
 // buildUrl
 // Builds a URL from which the citation is fetched
@@ -38,7 +39,23 @@ function getFormat(options) {
   if (options.mla) { return FORMAT_MLA }
   if (options.chicago) { return FORMAT_CHICAGO }
   if (options.ieee) { return FORMAT_IEEE }
+  if (options.bibtex) { return FORMAT_BIBTEX }
   return FORMAT_APA
+}
+
+// handleResponse
+// Returns a response handler function
+function handleResponse(format) {
+  return function(resp) {
+
+    // TODO - pretty-print BibTeX citation here
+
+    // Logs citations
+    console.log(`\n${chalk.yellow(resp)}\n`)
+
+    // Exit the CLI
+    process.exit()
+  }
 }
 
 // // // //
@@ -54,24 +71,16 @@ program
   .option('--mla', 'MLA Formatted citation')
   .option('--chicago', 'Chicao Formatted citation')
   .option('--ieee', 'IEEE Format citation')
+  .option('--bibtex', 'BibTeX Format citation')
   .action((websiteUrl, cmd) => {
     const format = getFormat(cleanArgs(cmd))
-    const fetchUrl = buildUrl({ type: CITATION_TYPE_WEBSITE, format: 'mla' })
+    const fetchUrl = buildUrl({ type: CITATION_TYPE_WEBSITE, format: format })
 
     // Logs start prompt
     console.log(`\n${chalk.blue(`Fetching ${format} website citation...`)}`)
 
     // Fetch citation
-    require('../lib/fetch')(fetchUrl, websiteUrl)
-    .then((resp) => {
-
-      // Logs citations
-      console.log(`\n${chalk.yellow(resp)}\n`)
-
-      // Exit the CLI
-      process.exit()
-    })
-
+    require('../lib/fetch')(fetchUrl, websiteUrl).then(handleResponse(format))
   })
 
 program
@@ -81,24 +90,16 @@ program
   .option('--mla', 'MLA Formatted citation')
   .option('--chicago', 'Chicao Formatted citation')
   .option('--ieee', 'IEEE Format citation')
+  .option('--bibtex', 'BibTeX Format citation')
   .action((isbn, cmd) => {
     const format = getFormat(cleanArgs(cmd))
-    const fetchUrl = buildUrl({ type: CITATION_TYPE_BOOK, format: 'mla' })
+    const fetchUrl = buildUrl({ type: CITATION_TYPE_BOOK, format: format })
 
     // Logs start prompt
     console.log(`\n${chalk.blue(`Fetching ${format} book citation...`)}`)
 
     // Fetch citation
-    require('../lib/fetch')(fetchUrl, isbn)
-    .then((resp) => {
-
-      // Logs citations
-      console.log(`\n${chalk.yellow(resp)}\n`)
-
-      // Exit the CLI
-      process.exit()
-    })
-
+    require('../lib/fetch')(fetchUrl, isbn).then(handleResponse(format))
   })
 
 // output help information on unknown commands
