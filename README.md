@@ -1,6 +1,12 @@
 # hardcider
 :beer: Create citations from the command line
 
+<p align="center">
+  <a href="https://npmcharts.com/compare/hardcider?minimal=true"><img src="https://img.shields.io/npm/dm/hardcider.svg" alt="Downloads"></a>
+  <a href="https://www.npmjs.com/package/hardcider"><img src="https://img.shields.io/npm/v/hardcider.svg" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/hardcider"><img src="https://img.shields.io/npm/l/hardcider.svg" alt="License"></a>
+</p>
+
 <img src="https://raw.githubusercontent.com/aeksco/hardcider/master/demo.gif" width="100%"/>
 
 
