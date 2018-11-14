@@ -14,9 +14,9 @@ npm install -g hardcider
 
 ### Usage
 
-- **`hardcider website <url>`** - create a website citation from a URL. Example:
+- **`hardcider website <url>`** - create a website citation from a URL
 
-- **`hardcider book <isbn>`** - create a book citation from an ISBN. Example:
+- **`hardcider book <isbn>`** - create a book citation from an ISBN-10 or ISBN-13
 
 
 ### Example
@@ -34,10 +34,11 @@ Fetching MLA citation...
 
 The following flags apply to both the `website` and `book` commands
 
-- `--apa` - returns an APA Formatted Citation (default)
-- `--mla` - returns an MLA Formatted Citation
-- `--chicago` - returns a Chicago Formatted Citation
-- `--ieee` - returns an IEEE Formatted Citation
+- `--mla` - returns an [MLA](https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_style_introduction.html) Formatted Citation (default)
+- `--apa` - returns an [APA](https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_style_introduction.html) Formatted Citation
+- `--chicago` - returns a [Chicago](https://www.chicagomanualofstyle.org/home.html) Formatted Citation
+- `--ieee` - returns an [IEEE](https://pitt.libguides.com/citationhelp/ieee) Formatted Citation
+- `--bibtex` - returns an [BibTeX](http://www.bibtex.org/) Formatted Citation
 
 
 ### Thanks
